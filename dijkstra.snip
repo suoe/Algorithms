@@ -1,0 +1,18 @@
+snippet     dijkstra
+  void dijkstra(const Graph &g, int s, vector<Weight> &d, vector<int> &prev) {
+    int n = g.size();
+    d.assign(n, INF);
+    prev.assign(n, -1);
+    priority_queue<Edge, vector<Edge>, greater<Edge>> Q;
+    d[s] = 0; Q.push(Edge(-1, s, 0));
+    while(!Q.empty()) {
+      Edge e = Q.top(); Q.pop();
+      for (const Edge &f : g[e.to]) {
+        if (d[f.to] > d[f.from] + f.cost) {
+          d[f.to] = d[f.from] + f.cost;
+          prev[f.to] = f.from;
+          Q.push(Edge(f.from, f.to, e.cost+f.cost));
+        }
+      }
+    }
+  }
