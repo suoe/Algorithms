@@ -4,6 +4,8 @@ alias       edge
   struct Edge {
     int from, to;
     Weight cost;
+    Edge(int from, int to, Weight cost) :
+      from(from), to(to), cost(cost) {}
   };
 
   bool operator < (const Edge &e, const Edge &f) {
