@@ -1,0 +1,18 @@
+snippet     graph
+alias       edge
+  using Weight = int;
+  struct Edge {
+    int from, to;
+    Weight cost;
+  };
+
+  bool operator < (const Edge &e, const Edge &f) {
+    return e.cost < f.cost;
+  }
+
+  bool operator > (const Edge &e, const Edge &f) {
+    return f.cost > e.cost;
+  }
+
+  using Edges = vector<Edge>;
+  using Graph = vector<Edges>;
