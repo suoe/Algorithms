@@ -1,15 +1,14 @@
 # UnionFind
-snippet     uf
-alias unionfind, UnionFind
-  class UnionFind {
-  public:
+snippet     UnionFind
+alias unionfind, uf
+  struct UnionFind {
     vector<int> data;
     UnionFind(int n) : data(n, -1) {}
-    int find(int x) {
-      return data[x] < 0 ? x : data[x] = find(data[x]);
+    int root(int x) {
+      return data[x] < 0 ? x : data[x] = root(data[x]);
     }
-    bool unite(int x, int y) {
-      x = find(x); y = find(y);
+    bool merge(int x, int y) {
+      x = root(x); y = root(y);
       if (x != y) {
         if (data[x] > data[y]) swap(x, y);
         data[x] += data[y]; data[y] = x;
@@ -17,6 +16,9 @@ alias unionfind, UnionFind
       return x != y;
     }
     bool same(int x, int y) {
-      return find(x) == find(y);
+      return root(x) == root(y);
+    }
+    int size(int x) {
+      return -data[root(x)];
     }
   };
