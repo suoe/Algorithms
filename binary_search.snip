@@ -1,0 +1,15 @@
+snippet     binary_search
+abbr        int binary_search(int s, int t)
+  bool isOK(int x) {
+  }
+
+  int binary_search(int s, int t) {
+    int ng = s-1, ok = t;
+    while (abs(ok-ng) > 1) {
+      int mid = (ok+ng) / 2;
+      if (isOK(mid)) ok = mid;
+      else ng = mid;
+    }
+    return ok;
+  }
+
